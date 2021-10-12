@@ -29,6 +29,17 @@ public class CCPSystemCommand implements CommandExecutor {
                         case "addpoints":
                             if (args[1].isEmpty() || args[2].isEmpty()) {
                                 player.sendMessage(Main.prefix + "§eCorrect Usage: §c/ccpsystem addpoints <username> <amount>");
+                            } else if(args[1].equals("*")) {
+                                String addedPoints = args[2];
+                                for(Player p : Bukkit.getOnlinePlayers()){
+                                    UUID userUUID = p.getUniqueId();
+                                    int addPoints = Integer.parseInt(addedPoints);
+                                    Main.getInstance().data.addSocialPoints(userUUID, addPoints);
+                                    instance.indicator.positiveSound(p);
+                                    p.sendMessage(Main.prefix + "§e" + addedPoints + " §cCredits have been added to your profile.");
+                                }
+                                player.sendMessage(Main.prefix + "Added " + addedPoints + " to everyone's Social Profile");
+                                instance.indicator.interactMenuSound(player);
                             } else {
                                 String username = args[1];
                                 String addedPoints = args[2];
@@ -41,7 +52,7 @@ public class CCPSystemCommand implements CommandExecutor {
                                         Main.getInstance().data.addSocialPoints(userUUID, addPoints);
                                         player.sendMessage(Main.prefix + "Added " + addedPoints + " to " + user.getName() + "'s Credits Points");
                                         instance.indicator.interactMenuSound(player);
-                                        user.sendMessage(Main.prefix + addedPoints + " Social Credits have been added to your profile.");
+                                        user.sendMessage(Main.prefix + "§e" + addedPoints + " §cCredits have been added to your profile.");
                                         if(!user.getName().equals(player.getName()))
                                             instance.indicator.positiveSound(user);
 
@@ -73,7 +84,7 @@ public class CCPSystemCommand implements CommandExecutor {
                                         Main.getInstance().data.setSocialPoints(userUUID, setPoints);
                                         player.sendMessage(Main.prefix + "Set " + user.getName() + "'s social points to " + setPoints);
                                         instance.indicator.interactMenuSound(player);
-                                        user.sendMessage(Main.prefix + "Your Social Credits on your profile have been set to " + setPoints + ".");
+                                        user.sendMessage(Main.prefix + "§cYour Social Credits have been set to §e" + setPoints + "§c.");
                                         if(!user.getName().equals(player.getName()))
                                             instance.indicator.positiveSound(user);
                                     } else {
@@ -103,7 +114,7 @@ public class CCPSystemCommand implements CommandExecutor {
                                         Main.getInstance().data.removeSocialPoints(userUUID, removePoints);
                                         player.sendMessage(Main.prefix + "Removed " + removePoints + " from " + user.getName() + "'s Social Points");
                                         instance.indicator.interactMenuSound(player);
-                                        user.sendMessage(Main.prefix + "" + removePoints + " Social Credits have been removed to your profile.");
+                                        user.sendMessage(Main.prefix + "§cYou have lost §e" + removePoints + " §cSocial Credits");
                                         if(!user.getName().equals(player.getName()))
                                             instance.indicator.positiveSound(user);
                                     } else {
@@ -186,7 +197,7 @@ public class CCPSystemCommand implements CommandExecutor {
                                         Main.getInstance().data.createPlayer(user);
                                         player.sendMessage(Main.prefix + "§eCreated Player " + user.getName());
                                         instance.indicator.interactMenuSound(player);
-                                        user.sendMessage(Main.prefix + "A new Social Credit profile has been created for you. Please type §c/socialcredits §bto gain access to this profile!");
+                                        user.sendMessage(Main.prefix + "A new Social Credit profile has been created for you. Please type §b/socialcredits §cto gain access to this profile!");
                                         if(!user.getName().equals(player.getName()))
                                             instance.indicator.positiveSound(user);
                                     } else {

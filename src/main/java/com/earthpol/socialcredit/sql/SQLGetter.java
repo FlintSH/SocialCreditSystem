@@ -173,7 +173,7 @@ public class SQLGetter {
             ResultSet rs = ps.executeQuery();
             int points;
             if (rs.next()){
-                points = rs.getInt("SOCIALOINTS");
+                points = rs.getInt("SOCIALPOINTS");
                 return points;
             }
         } catch(SQLException e){

@@ -5,3 +5,8 @@ api-version: 1.17
 authors: [ 0xBit ]
 description: An absolute meme of the CCP
 website: https://earthpol.com/social/credits.php
+commands:
+  ccpsystem:
+    description: Access to CCP Command for CCP Social System.
+  socialcredits:
+    description: Social Credits that sends you to the Social Credit website.

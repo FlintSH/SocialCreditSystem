@@ -22,11 +22,11 @@ public class SocialCreditCommand implements CommandExecutor {
         if (sender instanceof Player player) {
             UUID playerUUID = player.getUniqueId();
             instance.indicator.positiveSound(player);
-            TextComponent vote = new TextComponent("                                  §4[§cView Social Credits§4]                    ");
+            TextComponent vote = new TextComponent("                            §4[§cView Social Credits§4]                    ");
             vote.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§3Opens link to your social credit profile on your web browser.").create()));
             vote.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://earthpol.com/social/credits.php?uuid=" + playerUUID + "&key=" + instance.data.getCCPKey(playerUUID)));
             player.sendMessage("");
-            player.sendMessage("§e=================  [ §5CCP SOCIAL CREDITS §e] ================");
+            player.sendMessage("§4=================[ §cCCP SOCIAL CREDITS §4]=================");
             /* 2 */
             player.sendMessage("");
             /* 3 */
