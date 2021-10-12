@@ -1,0 +1,7 @@
+name: SocialCredit
+version: '${project.version}'
+main: com.earthpol.socialcredit.Main
+api-version: 1.17
+authors: [ 0xBit ]
+description: An absolute meme of the CCP
+website: https://earthpol.com/social/credits.php
